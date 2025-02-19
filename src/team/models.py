@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models.fields import related
-from player.models import Player
 
 User = get_user_model()
 
@@ -37,7 +36,7 @@ class Team(models.Model):
     category = models.CharField(
         max_length=10, choices=TEAM_CATEGORIES, default="sports"
     )
-    sport_type = models.CharField(max_length=20, choices=SPORT_TYPES, default="other")
+    sport_type = models.CharField(max_length=20, choices=SPORT_TYPES, default="football")
     wins = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
     draws = models.IntegerField(default=0)
@@ -60,6 +59,7 @@ class Team(models.Model):
 class TeamMembership(models.Model):
     """Intermediate model to link Players with Teams while ensuring only one team per sport per player."""
 
+    from player.models import Player
     player = models.ForeignKey(
         Player, on_delete=models.CASCADE, related_name="team_memberships"
     )

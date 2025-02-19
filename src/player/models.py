@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-
 class Player(models.Model):
     """Represents a player in a team. A player might or might not be a registered User."""
 
@@ -41,7 +40,7 @@ class Player(models.Model):
     )
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    nickname = models.CharField(max_length=100, blank=True, null=True)
+    login = models.CharField(max_length=100, blank=True, null=True)
     sport_type = models.CharField(
         max_length=50, choices=SPORT_TYPES, null=False, blank=True
     )
@@ -54,6 +53,8 @@ class Player(models.Model):
     profile_picture = models.ImageField(
         upload_to="player_profiles/", blank=True, null=True
     )
+    from team.models import Team
+    team = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

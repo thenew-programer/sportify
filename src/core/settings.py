@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    "core.middlewares.CookieToAuthHeaderMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -69,22 +70,11 @@ WSGI_APPLICATION = "core.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {},
-    "users": {
+    "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "user_db.sqlite3",
-    },
-    "sportify": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "sportify_db.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     },
 }
-
-DATABASE_ROUTERS = [
-    "user.router.AuthRouter",
-    "team.router.SportifyRouter",
-]
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
