@@ -26,13 +26,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     "rest_framework",
     "user",
     "team",
-    "player"
+    "player",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -72,21 +74,16 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "user_db.sqlite3",
     },
-    "teams": {
+    "sportify": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "teams_db.sqlite3",
-    },
-    "players": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "players_db.sqlite3",
-    },
-    "matches": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "players_db.sqlite3",
+        "NAME": BASE_DIR / "sportify_db.sqlite3",
     },
 }
 
-DATABASE_ROUTERS = ["user.router.AuthRouter", "team.router.TeamRouter", "player.router.PlayerRouter"]
+DATABASE_ROUTERS = [
+    "user.router.AuthRouter",
+    "team.router.SportifyRouter",
+]
 
 
 # Password validation
@@ -148,3 +145,11 @@ SIMPLE_JWT = {
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "user.User"
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOWED_ORIGINS = [
+        "https://yourfrontend.com",
+    ]
+
+CORS_ALLOW_CREDENTIALS = True

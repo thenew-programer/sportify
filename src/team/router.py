@@ -1,6 +1,6 @@
-class TeamRouter:
-    route_app_labels = { "team" }
-    db_name = "teams"
+class SportifyRouter:
+    route_app_labels = {"team", "player"}
+    db_name = "sportify"
 
     def db_for_read(self, model, **hints):
         if model._meta.app_label in self.route_app_labels:
