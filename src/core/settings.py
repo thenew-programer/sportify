@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "user",
+    "team",
+    "player"
 ]
 
 MIDDLEWARE = [
@@ -78,9 +80,13 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "players_db.sqlite3",
     },
+    "matches": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "players_db.sqlite3",
+    },
 }
 
-DATABASE_ROUTERS = ["user.router.AuthRouter"]
+DATABASE_ROUTERS = ["user.router.AuthRouter", "team.router.TeamRouter", "player.router.PlayerRouter"]
 
 
 # Password validation

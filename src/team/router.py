@@ -1,12 +1,6 @@
-class AuthRouter:
-    route_app_labels = {
-        "user",
-        "admin",
-        "contenttypes",
-        "sessions",
-        "auth",
-    }
-    db_name = "users"
+class TeamRouter:
+    route_app_labels = { "team" }
+    db_name = "teams"
 
     def db_for_read(self, model, **hints):
         if model._meta.app_label in self.route_app_labels:
