@@ -155,5 +155,5 @@ else:
     CORS_ALLOWED_ORIGINS = [
         "https://yourfrontend.com",
     ]
-
+CSRF_TRUSTED_ORIGINS = [ "https://sportify-production.up.railway.app" ]
 CORS_ALLOW_CREDENTIALS = True
