@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from player.models import Player
 from .serializers import PlayerSerializer
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import status, permissions
 
 
@@ -112,22 +113,21 @@ class RetrievePlayer(APIView):
     def get(self, request):
         try:
             user = request.user
-            player = Player.objects.filter(login=user.login)
-            if not player.exists():
-                return Response(
-                    {"is_player": "false"}
-                    status=status.HTTP_200_OK
-                )
-            else:
-                return Response(
-                    {"is_player": "true"}
-                    status=status.HTTP_200_OK
-                )
 
-            return Response({"user": user.data}, status=status.HTTP_200_OK)
-        except:
+            is_player = Player.objects.filter(login=user.login).exists()
+
             return Response(
-                {"error": "Something went wrong when retrieving user details"},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                {"is_player": is_player},
+                status=status.HTTP_200_OK
             )
 
+        except ObjectDoesNotExist:
+            return Response(
+                {"error": "User not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {"error": f"Something went wrong: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
