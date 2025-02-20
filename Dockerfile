@@ -49,6 +49,10 @@ ENV DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
 ARG DJANGO_DEBUG=FALSE
 ENV DJANGO_DEBUG=${DJANGO_DEBUG}
 
+# database isn't available during build
+# run any other commands that do not need the database
+RUN python manage.py collectstatic --noinput
+
 # set the Django default project name
 ARG PROJ_NAME="core"
 
