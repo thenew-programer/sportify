@@ -75,6 +75,8 @@ Ensure you have the following installed:
 
 ## 📷 Screenshots
 `backend can be seen only by blind people`
+**If u insist here is a picture while testing this api in postman**
+![Postman testing api endpoints](./assets/img.png)
 
 ## 🛠️ Technologies Used
 - Django & Django Rest Framework (Backend)
@@ -84,14 +86,3 @@ Ensure you have the following installed:
 
 ## 🔥 Contributing
 If you’d like to contribute, feel free to open an issue or submit a pull request!
-
-## 📄 License
-
-MIT License © 2025 Joseph Bouryal
-
-### 📌 Notes:  
-- Replace **YOUR_USERNAME** and **YOUR_REPO** with your actual GitHub details.  
-- Add **a live demo URL** if deployed.  
-- Include **API screenshots** (Swagger UI or Postman tests).  
-
-This **README** is structured, professional, and ready for your **hackathon project! 🚀**
