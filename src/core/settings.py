@@ -155,7 +155,7 @@ if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOWED_ORIGINS = [
-        "https://yourfrontend.com",
+        "https://splendorous-granita-5ca4ed.netlify.app"
     ]
 CSRF_TRUSTED_ORIGINS = [ "https://sportify-production.up.railway.app" ]
 CORS_ALLOW_CREDENTIALS = True

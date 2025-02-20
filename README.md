@@ -43,6 +43,17 @@ Ensure you have the following installed:
    python manage.py createsuperuser
    python manage.py runserver
     ```
+#### 🐳 Running with Docker
+##### Build and Run the container
+1. **Build the docker image**
+    ```bash
+    docker build -t sportify .
+    ```
+1. **Run The container**
+    ```bash
+    docker run -p 8000:8000 sportify
+
+    ```
 
 ## API Endpoints
 ### Authentification
