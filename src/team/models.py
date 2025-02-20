@@ -53,7 +53,7 @@ class Team(models.Model):
     def update_points(self, win_points=3, draw_points=1):
         """Update total points based on wins, draws, and losses."""
         self.total_points = (self.wins * win_points) + (self.draws * draw_points)
-        self.save(using=self._db)
+        self.save()
 
 
 class TeamMembership(models.Model):

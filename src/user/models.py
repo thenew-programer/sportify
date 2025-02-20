@@ -14,20 +14,20 @@ class UserManager(BaseUserManager):
         login = login.lower()
         user = self.model(login=login)
         user.set_password(password)
-        user.save(using=self._db)
+        user.save()
         return user
 
     def create_admin(self, login, password=None):
         user = self.create_user(login, password)
         user.is_admin = True
-        user.save(using=self._db)
+        user.save()
         return user
 
     def create_superuser(self, login, password=None):
         user = self.create_user(login, password)
         user.is_staff = True
         user.is_superuser = True
-        user.save(using=self._db)
+        user.save()
         return user
 
 
