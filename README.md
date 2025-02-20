@@ -42,7 +42,7 @@ Ensure you have the following installed:
    python manage.py migrate
    python manage.py createsuperuser
    python manage.py runserver
-```
+    ```
 
 ## API Endpoints
 ### Authentification
