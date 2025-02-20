@@ -62,7 +62,7 @@ ARG PROJ_NAME="core"
 RUN printf "#!/bin/bash\n" > ./paracord_runner.sh && \
     printf "RUN_PORT=\"\${PORT:-8000}\"\n\n" >> ./paracord_runner.sh && \
     printf "python manage.py migrate --no-input\n" >> ./paracord_runner.sh && \
-    printf "echo \"from django.contrib.auth import get_user_model; User = get_user_model(); if not User.objects.filter(login='\${ADMIN_LOGIN}').exists(): User.objects.create_superuser('\${ADMIN_LOGIN}', '\${ADMIN_PASSWD}')\" | python manage.py shell\n" >> ./paracord_runner.sh && \
+    printf "echo \"from django.contrib.auth import get_user_model\nUser = get_user_model()\nif not User.objects.filter(login='\${ADMIN_LOGIN}').exists(): User.objects.create_superuser('\${ADMIN_LOGIN}', '\${ADMIN_PASSWD}')\" | python manage.py shell\n" >> ./paracord_runner.sh && \
     printf "gunicorn ${PROJ_NAME}.wsgi:application --bind \"0.0.0.0:\$RUN_PORT\"\n" >> ./paracord_runner.sh
 
 # make the bash script executable
