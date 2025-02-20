@@ -76,7 +76,13 @@ Ensure you have the following installed:
 ## 📷 Screenshots
 `backend can be seen only by blind people`
 **If u insist here is a picture while testing this api in postman**
+
 ![Postman testing api endpoints](./assets/img.png)
+
+**Or this admin panel that is the reason why most people like django**
+
+![Django admin dashboard](./assets/admin.png)
+
 
 ## 🛠️ Technologies Used
 - Django & Django Rest Framework (Backend)
