@@ -45,7 +45,7 @@ class CreateTeam(APIView):
                 team = serializer.save()
                 
                 from player.models import Player
-                players = Player.objects.filter(login__in=player_logins)
+                players = Player.objects.filter(id__in=player_logins)
                 if players.count() != 7:
                     return Response(
                         {"error": "Some selected players do not exist."},
