@@ -44,7 +44,7 @@ class RegisterView(APIView):
                     if not User.objects.filter(login=login).exists():
                         User.objects.create_user(login=login, password=password)
                         return Response(
-                            {"success": "Spectator account created successfully"},
+                            {"success": "Spectator account created successfully",},
                             status=status.HTTP_201_CREATED,
                         )
                     else:
@@ -81,3 +81,17 @@ class RetrieveUserView(APIView):
                 {"error": "Something went wrong when retrieving user details"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
+
+class IsAdmin(APIView):
+    def get(self, request):
+        try:
+            user = request.user
+            user = UserSerializer(user)
+
+            return Response({"is_admin": user.data}, status=status.HTTP_200_OK)
+        except:
+            return Response(
+                {"error": "Something went wrong when retrieving user details"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
